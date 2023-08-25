@@ -7,9 +7,10 @@ const imgTitle = document.getElementById("imgTitle"), imgDesc = document.getElem
 let currentImg = 0
 let lastImg = images.length - 1
 
-function changeImg() {
-    
+//mostra la prima immagine nel carosello quando carica la pagina
+setImg(images[currentImg])
 
+function changeImg() {
     if (this === left) {
        currentImg = (currentImg === 0) ? lastImg : currentImg - 1
     } else if (this === right) {
@@ -17,6 +18,10 @@ function changeImg() {
     }
     
     let current = images[currentImg]
+    setImg(current) 
+}
+
+function setImg(current) {
     imgMain.setAttribute("src","./"+current.image)
     imgTitle.innerHTML = current.title
     imgDesc.innerHTML = current.text
