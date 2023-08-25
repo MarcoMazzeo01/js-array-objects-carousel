@@ -1,22 +1,27 @@
 const imgDisplay = document.getElementById("display")
-const imgMain = imgDisplay.firstElementChild
-const left = document.getElementById("left"), right = document.getElementById("right")
+const imgMain = imgDisplay.getElementsByTagName("img")[0]
+const left = document.getElementById("left"), right = document.getElementById("right");
+
+const imgTitle = document.getElementById("imgTitle"), imgDesc = document.getElementById("imgDesc")
 
 let currentImg = 0
 let lastImg = images.length - 1
-console.log(lastImg)
 
 function changeImg() {
-    if (this === left) {
+    let current
 
+    if (this === left) {
        currentImg = (currentImg === 0) ? lastImg : currentImg - 1
-       imgMain.setAttribute("src","./"+images[currentImg].image)
+       current = images[currentImg]
         
     } else if (this === right) {
         currentImg = (currentImg == lastImg) ? 0 : currentImg + 1
-        imgMain.setAttribute("src","./"+images[currentImg].image)
+        current = images[currentImg]
     }
     
+    imgMain.setAttribute("src","./"+current.image)
+    imgTitle.innerHTML = current.title
+    imgDesc.innerHTML = current.text
 }
 
 left.addEventListener("click",changeImg)
